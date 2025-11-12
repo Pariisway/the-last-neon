@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: the-last-neon
+    env: static
+    buildCommand: npm install
+    startCommand: npx serve -s . -l $PORT
+    envVars:
+      - key: NODE_ENV
+        value: production
+    staticPublishPath: .

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Last Neon - 90s Arcade & Voice Chat</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="neon-text">THE LAST NEON</h1>
+            <p class="tagline">Where 90s Arcade Meets Modern Voice Chat</p>
+        </header>
+
+        <nav class="main-nav">
+            <button class="nav-btn" onclick="showSection('voicechat')">Voice Chat Rooms</button>
+            <button class="nav-btn" onclick="showSection('arcade')">Arcade Room</button>
+            <button class="nav-btn" onclick="showSection('marketplace')">Marketplace</button>
+        </nav>
+
+        <main>
+            <!-- Voice Chat Section -->
+            <section id="voicechat" class="section active">
+                <h2>Voice Chat Rooms</h2>
+                <div class="room-grid">
+                    <div class="room-card" onclick="joinRoom('roblox')">
+                        <h3>Roblox</h3>
+                        <p>Join Roblox gamers</p>
+                    </div>
+                    <div class="room-card" onclick="joinRoom('fortnite')">
+                        <h3>Fortnite</h3>
+                        <p>Battle Royale chat</p>
+                    </div>
+                    <div class="room-card" onclick="joinRoom('minecraft')">
+                        <h3>Minecraft</h3>
+                        <p>Creative builders</p>
+                    </div>
+                    <div class="room-card" onclick="joinRoom('warzone')">
+                        <h3>WarZone</h3>
+                        <p>Call of Duty squad</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Arcade Section -->
+            <section id="arcade" class="section">
+                <h2>Arcade Games</h2>
+                <div class="game-grid">
+                    <div class="game-card" onclick="loadGame('snake')">
+                        <h3>Neon Snake</h3>
+                        <p>Classic snake game</p>
+                    </div>
+                    <div class="game-card" onclick="loadGame('pong')">
+                        <h3>Laser Pong</h3>
+                        <p>90s ping pong</p>
+                    </div>
+                    <div class="game-card" onclick="loadGame('tetris')">
+                        <h3>Block Drop</h3>
+                        <p>Tetris style</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Marketplace Section -->
+            <section id="marketplace" class="section">
+                <h2>Marketplace</h2>
+                <div id="marketplace-content">
+                    <p>Sign up to access our exclusive merch!</p>
+                    <button onclick="showAuth()">Sign Up / Login</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Voice Chat Modal -->
+        <div id="voiceModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeVoiceModal()">&times;</span>
+                <h3>Join Voice Room: <span id="roomName"></span></h3>
+                <input type="text" id="screenName" placeholder="Enter your screen name" maxlength="20">
+                <button onclick="connectVoice()">Join Voice Chat</button>
+                <div id="voiceControls" style="display: none;">
+                    <button id="muteBtn" onclick="toggleMute()">Mute</button>
+                    <button onclick="leaveVoice()">Leave Room</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auth Modal -->
+        <div id="authModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeAuthModal()">&times;</span>
+                <h3>Marketplace Access</h3>
+                <div id="auth-forms">
+                    <div id="login-form">
+                        <input type="email" id="loginEmail" placeholder="Email">
+                        <input type="password" id="loginPassword" placeholder="Password">
+                        <button onclick="login()">Login</button>
+                        <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
+                    </div>
+                    <div id="signup-form" style="display: none;">
+                        <input type="text" id="signupName" placeholder="Full Name">
+                        <input type="email" id="signupEmail" placeholder="Email">
+                        <input type="password" id="signupPassword" placeholder="Password">
+                        <input type="text" id="signupAddress" placeholder="Address">
+                        <input type="text" id="signupCity" placeholder="City">
+                        <input type="text" id="signupZip" placeholder="ZIP Code">
+                        <button onclick="signup()">Sign Up</button>
+                        <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/voicechat.js"></script>
+</body>
+</html>
+
+<script>
+// Add this to the existing index.html file - update the voice modal section
+document.addEventListener('DOMContentLoaded', function() {
+    // Enhanced voice modal with user display
+    const voiceModal = document.getElementById('voiceModal');
+    const modalContent = voiceModal.querySelector('.modal-content');
+    
+    // Add status and user display area
+    const statusDiv = document.createElement('div');
+    statusDiv.id = 'voiceStatus';
+    statusDiv.style.marginTop = '10px';
+    statusDiv.style.color = '#39ff14';
+    modalContent.appendChild(statusDiv);
+});
+</script>

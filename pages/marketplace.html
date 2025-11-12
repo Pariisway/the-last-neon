@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace - The Last Neon</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .product-card {
+            background: var(--darker-bg);
+            border: 2px solid var(--neon-purple);
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .back-btn {
+            background: var(--neon-purple);
+            color: var(--dark-bg);
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-btn" onclick="window.location.href='../index.html'">← Back to Main</button>
+        
+        <h1 class="neon-text">MARKETPLACE</h1>
+        
+        <div id="marketplace-content">
+            <p>Please sign in to access the marketplace.</p>
+            <button onclick="window.location.href='../index.html#marketplace'">Sign In</button>
+        </div>
+    </div>
+
+    <script>
+        // Simple marketplace logic
+        // In a real implementation, this would connect to Firebase
+        console.log('Marketplace page loaded');
+    </script>
+</body>
+</html>

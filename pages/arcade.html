@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Room - The Last Neon</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .game-container {
+            border: 3px solid var(--neon-green);
+            padding: 20px;
+            margin: 20px 0;
+            background: var(--darker-bg);
+        }
+        
+        .game-frame {
+            width: 100%;
+            height: 500px;
+            border: 2px solid var(--neon-purple);
+            background: var(--dark-bg);
+        }
+        
+        .back-btn {
+            background: var(--neon-purple);
+            color: var(--dark-bg);
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        #snakeCanvas {
+            border: 2px solid var(--neon-green);
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-btn" onclick="window.location.href='../index.html'">← Back to Main</button>
+        
+        <h1 class="neon-text">ARCADE ROOM</h1>
+        
+        <div class="game-grid">
+            <div class="game-card" onclick="loadGame('snake')">
+                <h3>Neon Snake</h3>
+                <p>Classic snake with neon twist</p>
+            </div>
+            <div class="game-card" onclick="loadGame('pong')">
+                <h3>Laser Pong</h3>
+                <p>90s ping pong battle</p>
+            </div>
+            <div class="game-card" onclick="loadGame('tetris')">
+                <h3>Block Drop</h3>
+                <p>Tetris in neon</p>
+            </div>
+        </div>
+        
+        <div id="gameContainer" class="game-container" style="display: none;">
+            <h2 id="gameTitle">Game Title</h2>
+            <div class="game-controls">
+                <button onclick="startGame()">Start Game</button>
+                <button onclick="pauseGame()">Pause</button>
+                <button onclick="resetGame()">Reset</button>
+                <span id="score">Score: 0</span>
+            </div>
+            <div id="gameFrame" class="game-frame">
+                <!-- Game will be loaded here -->
+            </div>
+            <button onclick="closeGame()">Close Game</button>
+        </div>
+    </div>
+
+    <script src="../js/arcade.js"></script>
+</body>
+</html>

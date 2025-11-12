@@ -1,0 +1,16 @@
+{
+  "name": "the-last-neon",
+  "version": "1.0.0",
+  "description": "90s Arcade Style Voice Chat and Gaming Platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve -s . -l 3000",
+    "build": "echo 'No build process needed for static site'"
+  },
+  "dependencies": {
+    "serve": "^14.0.0"
+  },
+  "keywords": ["arcade", "voice-chat", "gaming", "90s"],
+  "author": "The Last Neon",
+  "license": "MIT"
+}
