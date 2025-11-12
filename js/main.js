@@ -1,4 +1,4 @@
-// Main application logic
+// Main application logic for THE-LAST-NEON
 let currentSection = 'voicechat';
 
 // Make currentRoom available globally for voicechat.js
@@ -15,11 +15,54 @@ function showSection(sectionId) {
     currentSection = sectionId;
 }
 
+// Test Firestore Connection
+function testFirestoreConnection() {
+    const db = firebase.firestore();
+    
+    console.log('🧪 Testing Firestore connection for THE-LAST-NEON...');
+    
+    // Test write
+    return db.collection('test').doc('connection-test').set({
+        test: true,
+        project: 'the-last-neon',
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then(() => {
+        console.log('✅ Firestore write successful');
+        // Test read
+        return db.collection('test').doc('connection-test').get();
+    })
+    .then(doc => {
+        if (doc.exists) {
+            console.log('✅ Firestore read successful');
+            console.log('✅ THE-LAST-NEON Firestore is working perfectly!');
+        }
+        // Clean up
+        return db.collection('test').doc('connection-test').delete();
+    })
+    .then(() => {
+        console.log('✅ Firestore test completed successfully');
+        return true;
+    })
+    .catch(error => {
+        console.error('❌ Firestore test failed:', error);
+        alert('Firestore connection failed. Please check security rules.\nError: ' + error.message);
+        return false;
+    });
+}
+
 // Voice Chat Functions
 function joinRoom(room) {
-    window.currentRoom = room;
-    document.getElementById('roomName').textContent = room.charAt(0).toUpperCase() + room.slice(1);
-    document.getElementById('voiceModal').style.display = 'block';
+    // Test connection before joining room
+    testFirestoreConnection().then(success => {
+        if (success) {
+            window.currentRoom = room;
+            document.getElementById('roomName').textContent = room.charAt(0).toUpperCase() + room.slice(1);
+            document.getElementById('voiceModal').style.display = 'block';
+            document.getElementById('screenName').value = ''; // Clear previous name
+            document.getElementById('screenName').focus();
+        }
+    });
 }
 
 function closeVoiceModal() {
@@ -128,6 +171,13 @@ function loadGame(game) {
 document.addEventListener('DOMContentLoaded', function() {
     showSection('voicechat');
     
+    console.log('🚀 THE-LAST-NEON initializing...');
+    
+    // Test Firestore connection on startup
+    setTimeout(() => {
+        testFirestoreConnection();
+    }, 2000);
+    
     // Close modals when clicking outside
     window.onclick = function(event) {
         const voiceModal = document.getElementById('voiceModal');
@@ -144,10 +194,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Auth state observer
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
+            console.log('User authenticated:', user.email);
             loadMarketplace();
+        } else {
+            console.log('No user authenticated');
         }
     });
-
-    // Debug: Log Firebase config
-    console.log('Firebase config:', firebaseConfig);
 });

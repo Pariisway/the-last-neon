@@ -73,18 +73,26 @@
         </main>
 
         <!-- Voice Chat Modal -->
-        <div id="voiceModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeVoiceModal()">&times;</span>
-                <h3>Join Voice Room: <span id="roomName"></span></h3>
-                <input type="text" id="screenName" placeholder="Enter your screen name" maxlength="20">
-                <button onclick="connectVoice()">Join Voice Chat</button>
-                <div id="voiceControls" style="display: none;">
-                    <button id="muteBtn" onclick="toggleMute()">Mute</button>
-                    <button onclick="leaveVoice()">Leave Room</button>
-                </div>
-            </div>
+<div id="voiceModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeVoiceModal()">&times;</span>
+        <h3>Join Voice Room: <span id="roomName"></span></h3>
+        <input type="text" id="screenName" placeholder="Enter your screen name" maxlength="20">
+        <button onclick="connectVoice()">Join Voice Chat</button>
+        
+        <!-- Add these status elements -->
+        <div id="voiceStatus" style="margin: 10px 0; color: #39ff14;"></div>
+        <div id="audioContainer" style="margin-top: 20px;">
+            <h4>Connected Users:</h4>
+            <div id="userList" style="margin: 10px 0; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 5px;"></div>
         </div>
+        
+        <div id="voiceControls" style="display: none; margin-top: 15px;">
+            <button id="muteBtn" onclick="toggleMute()">Mute</button>
+            <button onclick="leaveVoice()">Leave Room</button>
+        </div>
+    </div>
+</div>
 
         <!-- Auth Modal -->
         <div id="authModal" class="modal">
